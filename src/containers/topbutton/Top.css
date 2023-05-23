@@ -1,0 +1,41 @@
+#mybtn {
+  position: fixed;
+  text-decoration: none;
+  transition: bottom 0.5s;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background-color: rgb(230, 80, 21);
+  box-shadow: #5a4d4d;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 99999999;
+}
+
+#outline {
+  outline: none !important;
+  border: none !important;
+}
+
+#outline:focus,
+#outline:active,
+#mybtn:active,
+#mybtn:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+#mybtn i {
+  animation: topbtn 0.5s alternate ease infinite;
+  font-size: 16px;
+}
+
+#mybtn i:hover {
+  transform: rotate(360deg) !important;
+}
