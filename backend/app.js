@@ -64,8 +64,9 @@ app.post('/upload', (req, res) => {
 
     pythonProcess.stdout.on('data', (data) => {
       prediction += data.toString();
-      const split = prediction.split(":");
-      prediction = split[split.length-1].replace(/\s/g, '');
+      const predictionArray = JSON.parse(prediction); // Convert string to array
+      prediction = predictionArray
+      console.log(prediction);
     });
 
     pythonProcess.stderr.on('data', (data) => {
@@ -86,7 +87,9 @@ app.post('/upload', (req, res) => {
     });
 
       // Return success message and prediction
-      return res.status(200).send({ message: 'Video uploaded and processed successfully', prediction });
+// Return success message and prediction as an array
+  return res.status(200).json({ message: 'Video uploaded and processed successfully', prediction: prediction });
+
     });
   });
 });

@@ -7,11 +7,24 @@ import sys
 import os
 from loquimodel.model.model import VideoModel
 from loquimodel.utils.helpers import load_missing
+import torch.nn.functional as F
 
 
 
 # from turbojpeg import TurboJPEG
 # jpeg = TurboJPEG()
+
+def predict_classes(model, input_tensor):
+    model.eval()
+    with torch.no_grad():
+        prediction_array = []
+        output = model(input_tensor)
+        probabilities = F.softmax(output, dim=1)
+        _, predicted_classes = torch.max(probabilities, 1)
+        class_percentages = [(idx, p.item() * 100) for idx, p in enumerate(probabilities[0])]
+        prediction_array = [[idx,round(p, 2)] for idx, p in class_percentages]
+        sorted_data = sorted(prediction_array, key=lambda x: x[1], reverse=True)
+        return sorted_data[:11]
 
 def extract_opencv(file_name: str) -> list:
     """
@@ -96,12 +109,10 @@ def main ():
     with torch.no_grad():
         frames = frames.unsqueeze(0)
         predictions = video_model(frames)
-    # Get the predicted label
-    predicted_label = torch.argmax(predictions).item()
-    # load labelsorted 
+
     # Print the predicted label
-    
-    print(f'Predicted label: {predicted_label}')
+    highest_prediction = predict_classes(video_model, frames)
+    print(highest_prediction)
 
 if __name__ == "__main__":
     main()

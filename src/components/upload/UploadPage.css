@@ -123,6 +123,25 @@ p {
   color: #b8b5b5;
   font-size: 2.5rem;
 }
+.table-prediction {
+  color: black;
+    font-size: 1.5rem;
+  height: 30px;
+  border-collapse: collapse;
+}
+
+.table-prediction th,
+.table-prediction td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-prediction th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
 /* Responsive Adjustments */
 
 @media screen and (max-width: 768px) {

@@ -7,6 +7,7 @@ import video_data from '../../data'
 import './UploadPage.css'
 import { useContext } from "react";
 import { ThemeContext } from "../../ThemeContexts/ThemeContext";
+import Table from './Table'
 function UploadPage() {
 
   const { darkMode } = useContext(ThemeContext);
@@ -29,44 +30,51 @@ function UploadPage() {
     setSelectedFile(file);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!selectedFile) {
-      alert('Please select a video file to upload.');
-      return;
-    }
-    const formData = new FormData();
-    formData.append('video', selectedFile);
-  
-    const options = {
-      onUploadProgress: (progressEvent) => {
-        const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        setUploadProgress(progress);
-      },
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-  
-    try {
-      setProcessing(true); // Set processing to true
-      setSubmitting(true);
-      const response = await axios.post('http://localhost:3000/upload', formData, options);
-      setSelectedFile(null);
-      setVideoUrl('http://localhost:3000/' + selectedFile.name);
-      setUploadProgress(0);
-      alert('Video uploaded successfully!');
-      const prediction = response.data.prediction;
-      setPrediction(prediction); // Update prediction state with the received value
-    } catch (error) {
-      console.log(error);
-      alert('An error occurred while uploading the video. Please try again later.');
-    } finally {
-      setProcessing(false); // Set processing to false
-      setSubmitting(false);
-    }
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  if (!selectedFile) {
+    alert('Please select a video file to upload.');
+    return;
+  }
+  const formData = new FormData();
+  formData.append('video', selectedFile);
+
+  const options = {
+    onUploadProgress: (progressEvent) => {
+      const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      setUploadProgress(progress);
+    },
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   };
-  
+
+  try {
+    setProcessing(true);
+    setSubmitting(true);
+    const response = await axios.post('http://localhost:3000/upload', formData, options);
+    setSelectedFile(null);
+    setVideoUrl('http://localhost:3000/' + selectedFile.name);
+    setUploadProgress(0);
+    alert('Video uploaded successfully!');
+    const newPrediction = response.data.prediction;
+    setPrediction((prevPrediction) => {
+      // Clear the previous prediction if it exists
+      if (prevPrediction) {
+        return newPrediction;
+      } else {
+        return newPrediction;
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    alert('An error occurred while uploading the video. Please try again later.');
+  } finally {
+    setProcessing(false);
+    setSubmitting(false);
+  }
+};
+
   
 
   return (
@@ -88,7 +96,8 @@ function UploadPage() {
                   {prediction && (
                   <div className="prediction-container">
 
-                    <p className='predicrion--text'>Prediction: {`${prediction}  ${video_data[(Number(prediction)+3)]}`}</p>
+                   <p className='predicrion--text'>Prediction: {`${video_data[Number(prediction[0][0])]}`}</p>
+                    <Table prediction = { prediction } video_data = {video_data}/>
                   </div>
                 )}
               </div>

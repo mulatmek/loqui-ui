@@ -36,7 +36,7 @@ const WhatGPT3 = () => {
             title="Real-Time Video Processing"
             text="Experience real-time predictions as our model quickly processes videos, making it ideal for applications like live streaming and real-time captioning."
           />
-          <Feature
+          <Feature 
             title=" Enhancing Content Understanding."
             text="By promoting accessibility, our model enhances content understanding for individuals with hearing impairments and non-native speakers, fostering inclusivity in video-based interactions."
           />
