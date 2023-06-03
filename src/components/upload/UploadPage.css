@@ -1,12 +1,14 @@
-.title{
-  font-size:3.5rem ;
+/* Default styles */
+
+.title {
+  font-size: 3.5rem;
   font-family: var(--font-family);
   font-weight: 800;
   font-size: 64px;
   line-height: 75px;
   margin-top: 100px;
-  
 }
+
 .main {
   display: flex;
   height: 50px;
@@ -18,7 +20,6 @@
   margin-bottom: 50px;
 }
 
-
 .dropzone-container {
   display: flex;
   flex-direction: column;
@@ -28,6 +29,7 @@
   width: 600px;
   height: 400px;
 }
+
 .dropzone {
   display: flex;
   flex-direction: column;
@@ -38,7 +40,6 @@
   width: 800px;
   cursor: pointer;
   transition: all 0.3s ease;
-
 }
 
 .file-type {
@@ -46,16 +47,19 @@
   margin-top: 10px;
   color: #aaa;
 }
+
 .selected-file {
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
+
 .file-name {
   font-size: 12px;
   margin-right: 10px;
   color: #333;
 }
+
 .remove-button {
   border: none;
   color: #b4abab;
@@ -64,11 +68,10 @@
   border-radius: 10%;
   border-color: #a69e9e;
 }
+
 .remove-button:hover {
   text-decoration: underline;
 }
-
-
 
 .button-container {
   display: flex;
@@ -85,8 +88,6 @@
   border-style: dashed;
 }
 
-
-
 p {
   margin: 0;
   font-size: 14px;
@@ -94,20 +95,16 @@ p {
   text-align: center;
 }
 
-.upload--link{
+.upload--link {
   text-align: center;
   width: 300px;
 }
-
 
 .text-center {
   text-align: center;
 }
 
-
-
 .prediction-container {
-  /* Styles to match the size of the dropzone */
   position: absolute;
   top: 0;
   left: 0;
@@ -119,13 +116,15 @@ p {
   color: white;
   font-size: 20px;
 }
-.predicrion--text{
+
+.predicrion--text {
   color: #b8b5b5;
   font-size: 2.5rem;
 }
+
 .table-prediction {
   color: black;
-    font-size: 1.5rem;
+  font-size: 1.5rem;
   height: 30px;
   border-collapse: collapse;
 }
@@ -145,42 +144,24 @@ p {
 /* Responsive Adjustments */
 
 @media screen and (max-width: 768px) {
-    .nav-txt {
+  /* Adjustments for smartphones */
+  .title {
     font-size: 2rem;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .nav-bar {
-    font-family: 'Schoolbell', arial, serif;
-    background: linear-gradient(90deg, #002240 1.5%, #001f4d 100%);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-
-  }
-  .upload--link{
-  text-align: left;
-  width: 300px;
-}
-  .nav-buttons {
-    font-size: 20px;
-
-
+    margin-top: 100px;
   }
 
   .main {
     margin-top: 150px;
   }
 
-
+  .dropzone-container {
+    width: 90%;
+    height: 300px;
+  }
 
   .dropzone {
-    width: 90%;
-    margin-bottom: 30px;
+    width: 100%;
+    height: 300px;
   }
 
   .file-type {
@@ -193,12 +174,12 @@ p {
   }
 
   .file-name {
-    font-size: 18px;
+    font-size: 16px;
     margin-right: 5px;
   }
 
   .remove-button {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .upload-progress {
@@ -206,8 +187,8 @@ p {
   }
 
   .progress-text {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 
   .progress-bar {
@@ -215,68 +196,21 @@ p {
   }
 
   .upload-button {
-    width: 300px;
+    width: 250px;
+    height: 50px;
+    margin-bottom: 100px;
   }
 
-  .footer-container {
-    max-width: 90%;
+  .upload--link {
+    text-align: left;
+    width: 250px;
   }
 
-  .home {
-    width: 80%;
-    height: auto;
+  .prediction-container {
+    font-size: 18px;
   }
 
-  .home-title {
-    font-size: 2rem;
-    margin-top: 30px;
-  }
-
-  .home-text {
+  .table-prediction {
     font-size: 1rem;
-    margin-bottom: 5px;
-  }
-
-  .carousel {
-    max-width: 90%;
-    height: 400px;
-  }
-
-  .carousel-caption {
-    height: 300px;
-  }
-
-  .carousel-caption h3 {
-    font-size: 24px;
-  }
-
-  .carousel-caption p {
-    font-size: 1rem;
-    left: 50px;
-    top: 100px;
-    width: 200px;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    bottom: 200px;
-  }
-
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    height: 20px;
-    width: 20px;
-  }
-
-  .dropzone {
-    height: 200px;
-    width: 90%;
-  }
-
-  .prediction-text {
-    font-size: 1.5rem;
   }
 }
-
-
-
