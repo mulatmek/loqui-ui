@@ -64,8 +64,8 @@ app.post('/upload', (req, res) => {
 
     pythonProcess.stdout.on('data', (data) => {
       prediction += data.toString();
-      const predictionArray = JSON.parse(prediction); // Convert string to array
-      prediction = predictionArray
+      // const predictionArray = JSON.parse(prediction); // Convert string to array
+      // prediction = predictionArray
       console.log(prediction);
     });
 

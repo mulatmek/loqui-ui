@@ -8,11 +8,69 @@ import os
 from loquimodel.model.model import VideoModel
 from loquimodel.utils.helpers import load_missing
 import torch.nn.functional as F
-
+import shutil
+import argparse
 
 
 # from turbojpeg import TurboJPEG
 # jpeg = TurboJPEG()
+def convert_mp4_files(source_dir, target_dir):
+    # Create the target directory if it doesn't exist
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    # Get the list of .mp4 files in the source directory
+    mp4_files = [file for file in os.listdir(source_dir) if file.endswith(".mp4")]
+
+    for file in mp4_files:
+        # Get the file path
+        file_path = os.path.join(source_dir, file)
+
+        # Open the video file
+        video = cv2.VideoCapture(file_path)
+
+        # Get video properties
+        fps = video.get(cv2.CAP_PROP_FPS)
+        frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
+        frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        total_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+
+        # Create a directory for the converted frames
+        frame_dir = os.path.join(target_dir, os.path.splitext(file)[0])
+        os.makedirs(frame_dir, exist_ok=True)
+
+        # Calculate the frame indices to extract 29 frames evenly
+        frame_indices = [int(idx) for idx in np.linspace(0, total_frames - 1, 29)]
+
+        # Extract and resize frames
+        frames = []
+        for frame_index in frame_indices:
+            # Set the frame index
+            video.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
+
+            # Read the frame
+            ret, frame = video.read()
+
+            # Resize the frame to 256x256 pixels
+            frame = cv2.resize(frame, (256, 256))
+
+            # Append the resized frame to the list
+            frames.append(frame)
+
+        # Release the video file
+        video.release()
+
+        # Create the output video file path
+        output_file = os.path.join(target_dir, f"{os.path.splitext(file)[0]}.mp4")
+
+        # Write the resized frames to a new video file
+        out = cv2.VideoWriter(output_file, cv2.VideoWriter_fourcc(*"mp4v"), fps, (256, 256))
+        for frame in frames:
+            out.write(frame)
+        out.release()
+
+        # Delete the directory containing the frames
+        shutil.rmtree(frame_dir)
 
 def predict_classes(model, input_tensor):
     model.eval()
@@ -81,7 +139,8 @@ def main ():
 
 
     video_model = VideoModel(500)
-    weight = torch.load("/Users/mulatmekonen/Desktop/myproject/loqui/backend/loquimodel/weights/lrw-cosine-lr-acc-0.85080.pt", map_location=torch.device('cpu'))
+    path = "/Users/mulatmekonen/Desktop/loqui-ui/backend/loquimodel/weights/lrw-cosine-lr-acc-0.85080.pt"
+    weight = torch.load(path, map_location=torch.device('cpu'))
    # weight_path = os.path.join("loquimodel", "weights", "lrw-cosine-lr-acc-0.85080.pt")
     #weight = torch.load(weight, map_location=torch.device('cpu'))
     load_missing(video_model, weight.get('video_model'))

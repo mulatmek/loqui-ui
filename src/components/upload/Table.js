@@ -12,7 +12,7 @@ const Table = (props) => {
       <tbody>
         {props.prediction.map(([id, percent]) => (
           <tr key={id}>
-            <td>{props.video_data[id]}</td>
+            <td>{props.video_data[id+3]}</td>
             <td>{percent}</td>
           </tr>
         ))}

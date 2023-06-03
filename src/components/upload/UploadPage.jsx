@@ -96,8 +96,8 @@ const handleSubmit = async (event) => {
                   {prediction && (
                   <div className="prediction-container">
 
-                   <p className='predicrion--text'>Prediction: {`${video_data[Number(prediction[0][0])]}`}</p>
-                    <Table prediction = { prediction } video_data = {video_data}/>
+                   <p className='predicrion--text'>Prediction: {`${video_data[Number(JSON.parse(prediction)[0][0])+3]}`}</p>
+                    <Table prediction = { JSON.parse(prediction) } video_data = {video_data}/>
                   </div>
                 )}
               </div>
