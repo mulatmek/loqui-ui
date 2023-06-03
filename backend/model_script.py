@@ -82,7 +82,7 @@ def predict_classes(model, input_tensor):
         class_percentages = [(idx, p.item() * 100) for idx, p in enumerate(probabilities[0])]
         prediction_array = [[idx,round(p, 2)] for idx, p in class_percentages]
         sorted_data = sorted(prediction_array, key=lambda x: x[1], reverse=True)
-        return sorted_data[:11]
+        return sorted_data[:10]
 
 def extract_opencv(file_name: str) -> list:
     """

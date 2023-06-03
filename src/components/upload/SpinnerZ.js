@@ -1,4 +1,5 @@
 import Spinner from 'react-bootstrap/Spinner';
+import './SpinnerZ.css';
 import React from 'react';
 
 function SpinnerZ() {

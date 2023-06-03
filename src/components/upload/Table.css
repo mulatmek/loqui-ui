@@ -1,0 +1,31 @@
+.table-container {
+    width: 300px;
+    position:absolute;
+    left: 650px;
+  }
+  
+  .table-prediction {
+    color: rgb(156, 50, 50);
+    font-size: 1.5rem;
+    height: 30px;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .table-prediction th,
+  .table-prediction td {
+    padding: 1px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-prediction th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  .table-header{
+    color: rgb(74, 73, 71);
+    margin-bottom: 10px;
+  }
+  
