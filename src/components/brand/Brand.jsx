@@ -1,25 +1,26 @@
+// Brand.js
 import React from "react";
 import "./Brand.css";
-import { google, slack, atlassian, dropbox, shopify } from "./Imports";
+import { google, pytorch, openCV, jupyter, openAI } from "./Imports";
 
 const Brand = () => {
   return (
     <>
       <div className="gpt3__brand section__padding">
         <div>
-          <img src={google} alt="google" />
+          <img className="brand__image" src={google} alt="google" />
         </div>
         <div>
-          <img src={slack} alt="slack" />
+          <img className="brand__image" src={pytorch} alt="pytorch" />
         </div>
         <div>
-          <img src={atlassian} alt="atlassian" />
+          <img className="brand__image" src={openCV} alt="openCV" />
         </div>
         <div>
-          <img src={dropbox} alt="dropbox" />
+          <img className="brand__image" src={jupyter} alt="jupyter" />
         </div>
         <div>
-          <img src={shopify} alt="shopify" />
+          <img className="brand__image" src={openAI} alt="openAI" />
         </div>
       </div>
     </>

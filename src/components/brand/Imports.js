@@ -1,7 +1,7 @@
-import google from "../../assets/google.png";
-import slack from "../../assets/slack.png";
-import atlassian from "../../assets/atlassian.png";
-import dropbox from "../../assets/dropbox.png";
-import shopify from "../../assets/shopify.png";
+import google from "../../assets/Google.png";
+import pytorch from "../../assets/pytorch.png";
+import openCV from "../../assets/openCV.png";
+import jupyter from "../../assets/jupyter.png";
+import openAI from "../../assets/openAI.png";
 
-export { google, slack, atlassian, dropbox, shopify };
+export { google, pytorch, openCV, jupyter, openAI };
