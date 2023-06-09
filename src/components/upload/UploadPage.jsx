@@ -8,16 +8,18 @@ import './UploadPage.css'
 import { useContext } from "react";
 import { ThemeContext } from "../../ThemeContexts/ThemeContext";
 import Table from './Table'
+import { MDBRadio } from 'mdb-react-ui-kit';
+
+
 function UploadPage() {
 
   const { darkMode } = useContext(ThemeContext);
 
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const [submitting, setSubmitting] = useState(false);
-  const [videoUrl, setVideoUrl] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [prediction, setPrediction] = useState(null);
+  const [checkboxOption, setCheckboxOption] = useState('UNSEEN');
 
 
 
@@ -29,51 +31,52 @@ function UploadPage() {
     }
     setSelectedFile(file);
   };
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  if (!selectedFile) {
-    alert('Please select a video file to upload.');
-    return;
-  }
-  const formData = new FormData();
-  formData.append('video', selectedFile);
-
-  const options = {
-    onUploadProgress: (progressEvent) => {
-      const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-      setUploadProgress(progress);
-    },
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  };
-
-  try {
-    setProcessing(true);
-    setSubmitting(true);
-    const response = await axios.post('http://localhost:3000/upload', formData, options);
-    setSelectedFile(null);
-    setVideoUrl('http://localhost:3000/' + selectedFile.name);
-    setUploadProgress(0);
-    alert('Video uploaded successfully!');
-    const newPrediction = response.data.prediction;
-    setPrediction((prevPrediction) => {
-      // Clear the previous prediction if it exists
-      if (prevPrediction) {
-        return newPrediction;
-      } else {
-        return newPrediction;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedFile) {
+      alert('Please select a video file to upload.');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('video', selectedFile);
+  
+    const options = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+  
+    try {
+      setProcessing(true);
+      setSubmitting(true);
+  
+      let url = 'http://localhost:3000/upload/unseen'; // Default URL
+      if (checkboxOption === 'LRW') {
+        url = 'http://localhost:3000/upload/lrw';
       }
-    });
-  } catch (error) {
-    console.log(error);
-    alert('An error occurred while uploading the video. Please try again later.');
-  } finally {
-    setProcessing(false);
-    setSubmitting(false);
-  }
-};
+  
+      const response = await axios.post(url, formData, options);
+  
+      setSelectedFile(null);
+      alert('Video uploaded successfully!');
+      const newPrediction = response.data.prediction;
+      setPrediction((prevPrediction) => {
+        // Clear the previous prediction if it exists
+        if (prevPrediction) {
+          return newPrediction;
+        } else {
+          return newPrediction;
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      alert('An error occurred while uploading the video. Please try again later.');
+    } finally {
+      setProcessing(false);
+      setSubmitting(false);
+    }
+  };
+  
 
   
 
@@ -82,6 +85,28 @@ const handleSubmit = async (event) => {
       <main className="main" id = "upload">
         <h1 className="gradient__text title ">Upload your video</h1>
         <div className="dropzone-container">
+        <div className='check-box'>
+          <div className="checkbox-container">
+            <MDBRadio
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
+              label="LRW"
+              className={`custom-checkbox ${checkboxOption === 'LRW' ? 'active' : ''}`}
+              onChange={() => setCheckboxOption('LRW')}
+            />
+            <p className="checkbox-text">sdflanslgnaslnvlasn awnflakjhglasj aslkgnalsg jlaksj gagnaklsgjakls jgasjglas alsjgal ggaskjgaghals gakgnalk</p>
+          </div>
+          <div className="checkbox-container">
+            <MDBRadio
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+              label="UNSEEN"
+              className={`custom-checkbox ${checkboxOption === 'UNSEEN' ? 'active' : ''}`}
+              onChange={() => setCheckboxOption('UNSEEN')}
+            />
+            <p className="checkbox-text">asdfnn anflafajsf lkdfklsDJFKAL SFKLSJDFLjf ladjflkSJFDKALSJG AGLANGLAGALJGLsj sglagja</p>
+          </div>
+        </div>
           <Dropzone onDrop={handleDrop} accept="video/mp4" multiple={false}>
             {({ getRootProps, getInputProps }) => (
               <div {...getRootProps()} className="dropzone">

@@ -141,6 +141,66 @@ p {
   font-weight: bold;
 }
 
+/* UploadPage.css */
+
+.check-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  position: absolute;
+  right:660px;
+  bottom: 217px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right:60px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ced4da;
+}
+
+.checkbox-container:last-child {
+  margin-right: 0;
+  border-bottom: none;
+}
+
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-checkbox.active label::before {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-checkbox label::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.custom-checkbox label {
+  margin-bottom: 0;
+}
+
+.checkbox-text {
+  margin-top: 5px;
+  font-size: 17px;
+  color: #6c757d;
+  text-align: center;
+}
+
 /* Responsive Adjustments */
 
 @media screen and (max-width: 768px) {
