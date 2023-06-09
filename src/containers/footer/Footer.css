@@ -1,8 +1,9 @@
-.footer-container{
+.footer-container {
   background-color: antiquewhite;
   margin-top: 50px;
   height: 10px;
 }
+
 .Upperbtn {
   display: flex;
   margin-right: 40px;
@@ -200,10 +201,47 @@
     line-height: 38px;
   }
 }
-.team{
+
+.team {
   border-style: dotted dashed solid double;
 }
-.border{
+
+.border {
   background-color: #f3eeee;
   width: 100%;
+}
+
+.gpt3__footer-navigation,
+.gpt3__footer-navigation-light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.gpt3__footer-navigation-frame {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.gpt3__footer-nav-link {
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+  padding: 10px 20px;
+}
+
+.gpt3__footer-nav-link:hover {
+  color: #888;
+}
+
+.gpt3__footer-navigation-frame {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px;
 }
