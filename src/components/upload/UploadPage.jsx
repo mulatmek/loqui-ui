@@ -87,24 +87,24 @@ function UploadPage() {
         <div className="dropzone-container">
         <div className='check-box'>
           <div className="checkbox-container">
+            <p className='lrw-label'>LRW MODEL</p>
             <MDBRadio
               name="flexRadioDefault"
               id="flexRadioDefault1"
-              label="LRW"
-              className={`custom-checkbox ${checkboxOption === 'LRW' ? 'active' : ''}`}
+              className={`custom-checkbox1 ${checkboxOption === 'LRW' ? 'active' : ''}`}
               onChange={() => setCheckboxOption('LRW')}
             />
-            <p className="checkbox-text">sdflanslgnaslnvlasn awnflakjhglasj aslkgnalsg jlaksj gagnaklsgjakls jgasjglas alsjgal ggaskjgaghals gakgnalk</p>
+            <p className="checkbox-text">The Lip Reading in the Wild (LRW) model is a deep learning model specifically designed for lip reading tasks on unconstrained video data.</p>
           </div>
           <div className="checkbox-container">
+          <p className='unseen-label'>UNSEEN</p>
             <MDBRadio
               name="flexRadioDefault"
               id="flexRadioDefault2"
-              label="UNSEEN"
-              className={`custom-checkbox ${checkboxOption === 'UNSEEN' ? 'active' : ''}`}
+              className={`custom-checkbox2 ${checkboxOption === 'UNSEEN' ? 'active' : ''}`}
               onChange={() => setCheckboxOption('UNSEEN')}
             />
-            <p className="checkbox-text">asdfnn anflafajsf lkdfklsDJFKAL SFKLSJDFLjf ladjflkSJFDKALSJG AGLANGLAGALJGLsj sglagja</p>
+            <p className="checkbox-text">The Lip Reading in the Wild (LRW) model is a deep learning model specifically designed for lip reading tasks on unconstrained video data.</p>
           </div>
         </div>
           <Dropzone onDrop={handleDrop} accept="video/mp4" multiple={false}>

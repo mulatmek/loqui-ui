@@ -149,16 +149,15 @@ p {
   margin-bottom: 10px;
   position: absolute;
   right:660px;
-  bottom: 217px;
+  bottom: 85px;
 }
 
 .checkbox-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right:60px;
+  margin-right:120px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ced4da;
 }
 
 .checkbox-container:last-child {
@@ -166,11 +165,30 @@ p {
   border-bottom: none;
 }
 
-.custom-checkbox {
+.custom-checkbox1 {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  right:  330px;
+}
+.custom-checkbox2 {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  left: 190px;
+}
+.unseen-label{
+  position: absolute;
+  left: 216px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.lrw-label{
+  position: absolute;
+  left: 3px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 .custom-checkbox.active label::before {
@@ -190,15 +208,16 @@ p {
   vertical-align: middle;
 }
 
-.custom-checkbox label {
+.custom-checkboxlabel {
   margin-bottom: 0;
+  font-size: 10rem;
 }
 
 .checkbox-text {
-  margin-top: 5px;
   font-size: 17px;
   color: #6c757d;
-  text-align: center;
+  text-align: left;
+  margin-top: 30px;
 }
 
 /* Responsive Adjustments */
