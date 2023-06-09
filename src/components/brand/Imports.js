@@ -1,4 +1,4 @@
-import google from "../../assets/Google.png";
+import google from "../../assets/google.png";
 import pytorch from "../../assets/pytorch.png";
 import openCV from "../../assets/openCV.png";
 import jupyter from "../../assets/jupyter.png";
