@@ -68,7 +68,6 @@ function handleUpload(req, res, pythonScript) {
 
     pythonProcess.stdout.on('data', (data) => {
       prediction += data.toString();
-      prediction = prediction.split('[]')[1];
       console.log(prediction);
     });
 
