@@ -11,7 +11,6 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, uploadDir);
@@ -28,8 +27,6 @@ const upload = multer({
   }
 }).single('video');
 
-
-
 // Middleware to set CORS headers
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -42,20 +39,27 @@ app.use((req, res, next) => {
   }
 });
 
+// Route to handle video upload for 'unseen' category
+app.post('/upload/unseen', (req, res) => {
+  handleUpload(req, res, 'unseen.py');
+});
 
-// Route to handle video upload
+// Route to handle video upload for 'lrw' category
+app.post('/upload/lrw', (req, res) => {
+  handleUpload(req, res, 'model_script.py');
+});
+
+// Function to handle video upload and execute Python AI model script
 const { spawn } = require('child_process');
 
-
-app.post('/upload', (req, res) => {
+function handleUpload(req, res, pythonScript) {
   upload(req, res, async (err) => {
     if (err) {
       console.error(err);
       return res.status(400).send({ error: err.message });
     }
 
-    // Execute Python AI model script
-    const pythonScriptPath = path.join(__dirname, 'model_script.py');
+    const pythonScriptPath = path.join(__dirname, pythonScript);
     const videoPath = req.file.path;
 
     const pythonProcess = spawn('python', [pythonScriptPath, videoPath]);
@@ -64,16 +68,12 @@ app.post('/upload', (req, res) => {
 
     pythonProcess.stdout.on('data', (data) => {
       prediction += data.toString();
-      //hard coded for now
-      prediction = prediction.split("[]")[1]
-      // const predictionArray = JSON.parse(prediction); // Convert string to array
-      // prediction = predictionArray
+      prediction = prediction.split('[]')[1];
       console.log(prediction);
     });
 
     pythonProcess.stderr.on('data', (data) => {
       console.error(data.toString());
-      
     });
 
     pythonProcess.on('close', (code) => {
@@ -82,21 +82,16 @@ app.post('/upload', (req, res) => {
         return res.status(500).send({ error: 'An error occurred while processing the video' });
       }
 
-    fs.unlink(videoPath, (unlinkErr) => {
-    if (unlinkErr) {
-      console.error(`Failed to delete video file: ${unlinkErr}`);
-    }
-    });
+      fs.unlink(videoPath, (unlinkErr) => {
+        if (unlinkErr) {
+          console.error(`Failed to delete video file: ${unlinkErr}`);
+        }
+      });
 
-      // Return success message and prediction
-// Return success message and prediction as an array
-  return res.status(200).json({ message: 'Video uploaded and processed successfully', prediction: prediction });
-
+      return res.status(200).json({ message: 'Video uploaded and processed successfully', prediction: prediction });
     });
   });
-});
-
-
+}
 
 // Start server
 const port = 3000;
