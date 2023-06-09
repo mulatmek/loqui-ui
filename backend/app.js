@@ -46,7 +46,7 @@ app.post('/upload/unseen', (req, res) => {
 
 // Route to handle video upload for 'lrw' category
 app.post('/upload/lrw', (req, res) => {
-  handleUpload(req, res, 'model_script.py');
+  handleUpload(req, res, 'lrw.py');
 });
 
 // Function to handle video upload and execute Python AI model script
