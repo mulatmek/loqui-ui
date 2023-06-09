@@ -64,6 +64,8 @@ app.post('/upload', (req, res) => {
 
     pythonProcess.stdout.on('data', (data) => {
       prediction += data.toString();
+      //hard coded for now
+      prediction = prediction.split("[]")[1]
       // const predictionArray = JSON.parse(prediction); // Convert string to array
       // prediction = predictionArray
       console.log(prediction);
