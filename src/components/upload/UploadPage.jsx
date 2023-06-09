@@ -83,7 +83,7 @@ function UploadPage() {
   return (
     <>
       <main className="main" id = "upload">
-        <h1 className="gradient__text title ">Upload your video</h1>
+        <h1 className="gradient__text title ">Ready to upload? Let's get started!</h1>
         <div className="dropzone-container">
         <div className='check-box'>
           <div className="checkbox-container">
