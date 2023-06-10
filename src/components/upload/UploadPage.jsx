@@ -58,7 +58,6 @@ function UploadPage() {
       const response = await axios.post(url, formData, options);
   
       setSelectedFile(null);
-      alert('Video uploaded successfully!');
       const {data: newPrediction} = response ?? {};
       setPrediction((prevPrediction) => {
         // Clear the previous prediction if it exists
