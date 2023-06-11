@@ -13,9 +13,9 @@ const Table = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.prediction.map(([id, percent]) => (
-            <tr key={id}>
-              <td>{props.video_data[id + 3]}</td>
+          {props.prediction.map(([label, percent]) => (
+            <tr key={label}>
+              <td>{label}</td>
               <td>{percent}</td>
             </tr>
           ))}

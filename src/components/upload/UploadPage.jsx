@@ -38,8 +38,8 @@ function UploadPage() {
       return;
     }
     const formData = new FormData();
-    formData.append('video', selectedFile);
-  
+    formData.append('file', selectedFile);
+    
     const options = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -50,7 +50,7 @@ function UploadPage() {
       setProcessing(true);
       setSubmitting(true);
   
-      let url = 'http://localhost:3000/upload/unseen'; // Default URL
+      let url = 'http://localhost:3000/predict/unseen'; // Default URL
       if (checkboxOption === 'LRW') {
         url = 'http://localhost:3000/upload/lrw';
       }
@@ -58,8 +58,7 @@ function UploadPage() {
       const response = await axios.post(url, formData, options);
   
       setSelectedFile(null);
-      alert('Video uploaded successfully!');
-      const newPrediction = response.data.prediction;
+      const {data: newPrediction} = response ?? {};
       setPrediction((prevPrediction) => {
         // Clear the previous prediction if it exists
         if (prevPrediction) {
@@ -121,8 +120,8 @@ function UploadPage() {
                   {prediction && (
                   <div className="prediction-container">
 
-                   <p className='predicrion--text'>Prediction: {`${video_data[Number(JSON.parse(prediction)[0][0])+3]}`}</p>
-                    <Table prediction = { JSON.parse(prediction) } video_data = {video_data}/>
+                   <p className='predicrion--text'>Prediction: {prediction[0][0]}</p>
+                    <Table prediction = {prediction} video_data = {video_data}/>
                   </div>
                 )}
               </div>
