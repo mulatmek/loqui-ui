@@ -1,7 +1,7 @@
 import React from "react";
 import "./Table.css";
 
-const   Table = (props) => {
+const Table = (props) => {
   return (
     <div className="table-container">
       <h2 className="table-header">Top 10 Predictions</h2>

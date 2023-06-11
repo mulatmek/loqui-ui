@@ -50,7 +50,7 @@ function UploadPage() {
       setProcessing(true);
       setSubmitting(true);
   
-      let url = 'http://localhost:8080/predict/unseen'; // Default URL
+      let url = 'http://localhost:3000/predict/unseen'; // Default URL
       if (checkboxOption === 'LRW') {
         url = 'http://localhost:3000/upload/lrw';
       }
