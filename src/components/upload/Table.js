@@ -4,7 +4,8 @@ import "./Table.css";
 const Table = (props) => {
   return (
     <div className="table-container">
-      <h2 className="table-header">Top 10 Predictions</h2>
+      {props.check === "UNSEEN"&&<h2 className="table-header">Top 5 Predictions</h2>}
+      {props.check !== "UNSEEN"&&<h2 className="table-header">Top 10 Predictions</h2>}
       <table className="table-prediction">
         <thead>
           <tr>

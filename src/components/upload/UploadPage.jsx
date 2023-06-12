@@ -121,7 +121,7 @@ function UploadPage() {
                   <div className="prediction-container">
 
                    <p className='predicrion--text'>Prediction: {prediction[0][0]}</p>
-                    <Table prediction = {prediction} video_data = {video_data}/>
+                    <Table prediction = {prediction} video_data = {video_data} check = {checkboxOption}/>
                   </div>
                 )}
               </div>
