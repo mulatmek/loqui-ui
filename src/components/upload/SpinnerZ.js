@@ -1,14 +1,22 @@
-import Spinner from 'react-bootstrap/Spinner';
+
 import './SpinnerZ.css';
 import React from 'react';
+import { Oval  } from 'react-loader-spinner';
+
 
 function SpinnerZ() {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <p className="file-type">loqui AI model loading ...</p>
-      <Spinner animation="border" role="status">
-        
-      </Spinner>
+    <div className='spinner-container' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <p className="file-type">Loading ...</p>
+      <Oval 
+        height="40"
+        width="70"
+        radius="9"
+        color="blue"
+        ariaLabel="loading"
+        wrapperStyle
+        wrapperClass
+      />
     </div>
   );
 }
