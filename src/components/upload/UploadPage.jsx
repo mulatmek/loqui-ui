@@ -30,6 +30,7 @@ function UploadPage() {
       return;
     }
     setSelectedFile(file);
+    setPrediction(null); // Reset prediction when a new file is selected
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
