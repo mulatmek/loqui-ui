@@ -50,9 +50,9 @@ function UploadPage() {
       setProcessing(true);
       setSubmitting(true);
   
-      let url = 'http://localhost:3000/predict/unseen'; // Default URL
+      let url = 'http://loqui.cs.colman.ac.il:5000/predict/unseen'; // Default URL
       if (checkboxOption === 'LRW') {
-        url = 'http://localhost:3000/upload/lrw';
+        url = 'http://loqui.cs.colman.ac.il:5000/predict/lrw';
       }
   
       const response = await axios.post(url, formData, options);
