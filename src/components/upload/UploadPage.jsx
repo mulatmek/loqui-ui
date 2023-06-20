@@ -104,7 +104,7 @@ function UploadPage() {
               className={`custom-checkbox2 ${checkboxOption === 'UNSEEN' ? 'active' : ''}`}
               onChange={() => setCheckboxOption('UNSEEN')}
             />
-            <p className="checkbox-text">The Lip Reading in the Wild (LRW) model is a deep learning model specifically designed for lip reading tasks on unconstrained video data.</p>
+            <p className="checkbox-text">This Model Trained on 5 dffierent words and is optimize for unseen videos. </p>
           </div>
         </div>
           <Dropzone onDrop={handleDrop} accept="video/mp4" multiple={false}>
